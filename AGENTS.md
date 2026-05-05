@@ -27,6 +27,7 @@ server-side runtime.
 | Comments | Giscus (optional, GitHub Discussions backed) |
 | Math | KaTeX (opt-in per post via `math: true` frontmatter) |
 | CI | GitHub Actions — `deploy.yml` (Pages) + `pr-checks.yml` |
+| Syncing | Starter template is synced using `.github/workflows/sync-starter.yml`, driven by `.starter-include` |
 
 ---
 
@@ -34,6 +35,7 @@ server-side runtime.
 
 ```
 .
+├── .starter-include           # Defines which files/folders are synced to the starter template
 ├── astro.config.mjs           # Astro + integrations config
 ├── bunfig.toml                # Bun runtime config
 ├── eslint.config.js           # Flat ESLint config (zero warnings policy)
@@ -415,6 +417,7 @@ bun run pagefind       # Re-run Pagefind only (after astro build)
 | Deploy | `.github/workflows/deploy.yml` | Push to `main` | Full build + deploy to GitHub Pages |
 | PR Checks | `.github/workflows/pr-checks.yml` | PR + push to `main` | PRs use fast mode (skip OG/RSS/collections) |
 | Sync Labels | `.github/workflows/labels.yml` | Manual dispatch | Applies `.github/labels.yml` to the repo |
+| Sync Starter | `.github/workflows/sync-starter.yml` | Push to `main` (after PR Checks succeed) or manual | Syncs files configured in `.starter-include` to `chirping-astro-starter`. Strips Husky and lint-staged from its `package.json`. |
 
 ### PR fast mode env vars (set automatically by `pr-checks.yml`)
 

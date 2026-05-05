@@ -1045,6 +1045,14 @@ If you are unsure where to start, open a feature request or bug report and we ca
 
 ## Maintainer ops
 
+### Syncing the Starter Template
+
+The companion `chirping-astro-starter` repository mirrors this repository minus the documentation and comprehensive demo posts.
+Whenever changes are pushed to `main`, a GitHub Action ([.github/workflows/sync-starter.yml](./.github/workflows/sync-starter.yml)) automatically copies files across to the starter.
+
+- To control **which files to sync**, edit the `.starter-include` file at the root. It supports directories and standard glob patterns.
+- **Husky** and **lint-staged** are intentionally stripped from the starter's `package.json` to prevent Git commit blockers for less technical authors.
+
 ### Sync standard labels
 
 This repository keeps issue labels in [.github/labels.yml](./.github/labels.yml).

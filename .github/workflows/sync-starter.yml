@@ -41,25 +41,24 @@ jobs:
           # Clean starter (preserve .git)
           find starter -mindepth 1 -maxdepth 1 ! -name '.git' -exec rm -rf {} +
 
+          # Copy explicitly included items from .starter-include
+          while IFS= read -r pattern || [ -n "$pattern" ]; do
+            # Ignore empty lines and comments
+            [[ -z "$pattern" || "$pattern" =~ ^# ]] && continue
+
+            # Since pattern might be a glob (like .prettierrc*), we expand it
+            for file in source/$pattern; do
+              [ -e "$file" ] || continue
+              cp -r "$file" starter/
+            done
+          done < source/.starter-include
+
           # Copy core project files
-          cp source/package.json starter/
-          cp source/bun.lock starter/ 2>/dev/null || true
-          cp source/tsconfig.json starter/
-          cp source/astro.config.mjs starter/
-          cp source/eslint.config.js starter/
-          cp source/.prettierrc* starter/ 2>/dev/null || true
-          cp source/.prettierignore starter/ 2>/dev/null || true
-          cp source/.gitignore starter/
-          cp source/bunfig.toml starter/ 2>/dev/null || true
-          cp source/LICENSE starter/
+          # Strip Husky and lint-staged from the starter's package.json
+          jq 'del(.scripts.prepare, .devDependencies.husky, .devDependencies["lint-staged"], ."lint-staged")' source/package.json > starter/package.json
 
           # Copy .env.example (without CI-only flags)
           grep -v '^CI_SKIP_' source/.env.example > starter/.env.example || cp source/.env.example starter/.env.example
-
-          # Copy source code
-          cp -r source/src starter/
-          cp -r source/public starter/
-          cp -r source/.husky starter/
 
           # Remove demo posts (replaced by starter sample)
           rm -rf starter/src/content/posts/en/*
