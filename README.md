@@ -78,7 +78,7 @@ authoring experience — without writing your own theme from scratch.
 - **Automatic OG images** generated at build time with Satori + Resvg
   for posts without a hero image (toggleable via `SITE.autoOgImage`)
 - **Privacy Policy** — customizable bilingual templates with footer link
-  (toggleable via `SITE.showPrivacyPolicy`)
+  (toggleable via `SITE.footer.showPrivacyPolicy`)
 - RSS per locale, hreflang alternates, locale-aware sitemap
 - Strict TypeScript, ESLint (zero warnings), Prettier, accessibility
   focus (skip-to-content, ARIA roles, `prefers-reduced-motion`)
@@ -142,8 +142,7 @@ SITE_URL=https://chirping-astro.example.com
 BASE_PATH=
 
 # Author / social handles. Leave any of them blank to drop the matching
-# icon from the sidebar. The footer's "Theme" link uses GITHUB_HANDLE +
-# GITHUB_REPO, so users never have to edit URLs by hand.
+# icon from the sidebar.
 PUBLIC_GITHUB_HANDLE=
 PUBLIC_GITHUB_REPO=chirping-astro
 PUBLIC_TWITTER_HANDLE=
@@ -163,9 +162,8 @@ You can leave `PUBLIC_GISCUS_*` as placeholders for now — the theme
 will detect this and show a helpful setup notice on post pages
 instead of a broken iframe.
 
-The handle vars feed `SITE.author.url`, the `SOCIALS` array, and the
-footer's repo link automatically. They are also the recommended way to
-configure identity — do **not** edit URLs in `src/config.ts` directly.
+The handle vars feed `SITE.author.url` and the `SOCIALS` array automatically.
+The footer theme link is configured in `SITE.footer.themeUrl`.
 
 ### 4. Configure your site identity
 
@@ -193,7 +191,19 @@ export const SITE: SiteConfig = {
   dynamicPostCardHeight: false,
   multilingual: true,
   autoOgImage: true,
-  showPrivacyPolicy: true,
+  showPrivacyPolicy: true, // legacy fallback
+  footer: {
+    // Optional: full override for the left footer line.
+    // Supports {year} and {author} placeholders.
+    leftText: undefined,
+    // Optional: text shown before the theme link on the right.
+    rightText: undefined,
+    // Footer-level visibility toggles.
+    showPrivacyPolicy: true,
+    showThemeCredits: true,
+    themeName: 'Chirping Astro',
+    themeUrl: 'https://github.com/kannansuresh/chirping-astro',
+  },
 };
 ```
 
@@ -326,27 +336,28 @@ not work in `dev`** — only after `bun run build`. This is by design.
 
 Every customisable knob lives in a small number of files:
 
-| Knob                                | File                                           |
-| ----------------------------------- | ---------------------------------------------- |
-| Site title, URL, author, locales    | `src/config.ts` → `SITE`                       |
-| Sidebar navigation links            | `src/config.ts` → `NAV`                        |
-| Sidebar social icons                | `src/config.ts` → `SOCIALS`                    |
-| Giscus comments                     | `src/config.ts` → `GISCUS` + `.env`            |
-| Theme colours (light + dark)        | `src/styles/global.css` (OKLCH tokens)         |
-| Layout sizing (sidebar width, etc.) | `src/styles/global.css` (custom CSS vars)      |
-| UI strings per locale               | `src/i18n/ui.ts`                               |
-| Date formatting per locale          | `src/i18n/utils.ts` → `formatDate`             |
-| ISO date formatting                 | `src/config.ts` → `SITE.isoDates`              |
-| Posts-per-page on listings          | `src/config.ts` → `SITE.postsPerPage`          |
-| Default featured images visibility  | `src/config.ts` → `SITE.showFeaturedImages`    |
-| Boxed post / page articles          | `src/config.ts` → `SITE.boxedArticles`         |
-| Listing card height behavior        | `src/config.ts` → `SITE.dynamicPostCardHeight` |
-| Privacy Policy link in footer       | `src/config.ts` → `SITE.showPrivacyPolicy`     |
-| Privacy Policy content (customize)  | `src/content/pages/{en,fr}/privacy.md`         |
-| Multilingual UI (language switcher) | `src/config.ts` → `SITE.multilingual`          |
-| Auto-generated OG images            | `src/config.ts` → `SITE.autoOgImage`           |
-| Frontmatter validation rules        | `src/content.config.ts`                        |
-| Astro / build integrations          | `astro.config.mjs`                             |
+| Knob                                | File                                              |
+| ----------------------------------- | ------------------------------------------------- |
+| Site title, URL, author, locales    | `src/config.ts` → `SITE`                          |
+| Sidebar navigation links            | `src/config.ts` → `NAV`                           |
+| Sidebar social icons                | `src/config.ts` → `SOCIALS`                       |
+| Giscus comments                     | `src/config.ts` → `GISCUS` + `.env`               |
+| Theme colours (light + dark)        | `src/styles/global.css` (OKLCH tokens)            |
+| Layout sizing (sidebar width, etc.) | `src/styles/global.css` (custom CSS vars)         |
+| UI strings per locale               | `src/i18n/ui.ts`                                  |
+| Date formatting per locale          | `src/i18n/utils.ts` → `formatDate`                |
+| ISO date formatting                 | `src/config.ts` → `SITE.isoDates`                 |
+| Posts-per-page on listings          | `src/config.ts` → `SITE.postsPerPage`             |
+| Default featured images visibility  | `src/config.ts` → `SITE.showFeaturedImages`       |
+| Boxed post / page articles          | `src/config.ts` → `SITE.boxedArticles`            |
+| Listing card height behavior        | `src/config.ts` → `SITE.dynamicPostCardHeight`    |
+| Privacy Policy link in footer       | `src/config.ts` → `SITE.footer.showPrivacyPolicy` |
+| Theme credits in footer             | `src/config.ts` → `SITE.footer.showThemeCredits`  |
+| Privacy Policy content (customize)  | `src/content/pages/{en,fr}/privacy.md`            |
+| Multilingual UI (language switcher) | `src/config.ts` → `SITE.multilingual`             |
+| Auto-generated OG images            | `src/config.ts` → `SITE.autoOgImage`              |
+| Frontmatter validation rules        | `src/content.config.ts`                           |
+| Astro / build integrations          | `astro.config.mjs`                                |
 
 ---
 
@@ -838,7 +849,7 @@ favicons, images, internal links) gets prefixed correctly.
    | `SITE_URL`                  | Canonical origin for OG / RSS / sitemap             | `https://<owner>.github.io`                        |
    | `BASE_PATH`                 | Sub-path for project Pages (e.g. `/chirping-astro`) | derived from `${{ github.event.repository.name }}` |
    | `PUBLIC_GITHUB_HANDLE`      | Footer link, sidebar GitHub icon, `SITE.author.url` | derived from `${{ github.repository_owner }}`      |
-   | `PUBLIC_GITHUB_REPO`        | Footer "Theme" link target                          | derived from `${{ github.event.repository.name }}` |
+   | `PUBLIC_GITHUB_REPO`        | Optional repo slug for custom integrations          | derived from `${{ github.event.repository.name }}` |
    | `PUBLIC_TWITTER_HANDLE`     | Sidebar Twitter icon                                | icon hidden                                        |
    | `PUBLIC_CONTACT_EMAIL`      | Sidebar Email icon (`mailto:` link)                 | icon hidden                                        |
    | `PUBLIC_GISCUS_ENABLED`     | Master switch for Giscus comments                   | comments off                                       |

@@ -88,8 +88,8 @@ not a configuration soup. If you want to extend it:
 Setting up the theme from a fresh clone is documented in detail in the
 project **`README.md`** at the root of the repository — open it in your
 editor, or click the **Chirping Astro** link in the site footer to jump
-to the configured GitHub repo (set `PUBLIC_GITHUB_HANDLE` and
-`PUBLIC_GITHUB_REPO` in `.env`).
+to the upstream theme repo. You can customize that link in
+`SITE.footer.themeUrl` inside `src/config.ts`.
 
 ## Starter template
 

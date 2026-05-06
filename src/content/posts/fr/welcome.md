@@ -92,8 +92,8 @@ normal, pas comme un magma de configuration. Pour l'étendre :
 L'installation du thème depuis un clone vierge est documentée en
 détail dans le **`README.md`** à la racine du dépôt — ouvrez-le dans
 votre éditeur, ou cliquez sur le lien **Chirping Astro** du pied de
-page pour rejoindre le dépôt GitHub configuré (renseignez
-`PUBLIC_GITHUB_HANDLE` et `PUBLIC_GITHUB_REPO` dans `.env`).
+page pour rejoindre le dépôt officiel du thème. Vous pouvez
+personnaliser ce lien via `SITE.footer.themeUrl` dans `src/config.ts`.
 
 ## Template de démarrage
 

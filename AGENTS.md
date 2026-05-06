@@ -106,7 +106,7 @@ The file `.env.example` is the canonical reference — never commit `.env`.
 | `SITE_URL` | ✅ | Canonical origin (no trailing slash). Used for OG, RSS, sitemap, hreflang. |
 | `BASE_PATH` | GitHub Pages only | Sub-path prefix (e.g. `/chirping-astro`). Leave empty for root hosting. |
 | `PUBLIC_GITHUB_HANDLE` | Optional | Sidebar GitHub icon + `SITE.author.url` |
-| `PUBLIC_GITHUB_REPO` | Optional | Footer "Theme" link |
+| `PUBLIC_GITHUB_REPO` | Optional | Repo slug for custom integrations |
 | `PUBLIC_TWITTER_HANDLE` | Optional | Sidebar Twitter icon |
 | `PUBLIC_CONTACT_EMAIL` | Optional | Sidebar email icon |
 | `PUBLIC_GISCUS_ENABLED` | Optional | Master switch (`true`/`false`). Default: `false`. |
@@ -148,6 +148,12 @@ SITE.autoOgImage      // false disables Satori OG generation
 SITE.showPrivacyPolicy // false removes footer privacy link
 SITE.boxedArticles    // true wraps post content in a card
 SITE.dynamicPostCardHeight // true lets listing cards grow with content
+SITE.footer.leftText  // optional full left footer override ({year}, {author})
+SITE.footer.rightText // optional custom text before the theme link
+SITE.footer.showPrivacyPolicy // toggles privacy link independently of leftText
+SITE.footer.showThemeCredits // toggles right-side theme credits independently of rightText
+SITE.footer.themeName // theme link label in footer right side
+SITE.footer.themeUrl  // theme link URL (defaults to upstream repo)
 
 NAV                   // Array of top-bar links; keys must exist in i18n/ui.ts
 SOCIALS               // Derived from PUBLIC_* env vars; extend for extra networks
