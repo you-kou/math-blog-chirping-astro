@@ -8,9 +8,10 @@ import { Icon } from 'astro-icon/components';
 interface Props {
   post: Post;
   locale: Locale;
+  prioritizeLcp?: boolean;
 }
 
-const { post, locale } = Astro.props;
+const { post, locale, prioritizeLcp = false } = Astro.props;
 const href = postPath(post);
 const heroAsset = heroImage(post);
 const hasImage = Boolean(heroAsset) && shouldShowHero(post);
@@ -35,6 +36,7 @@ const isDynamicCardHeight = post.data.dynamicPostCardHeight ?? SITE.dynamicPostC
             alt={heroAlt}
             class="chirpy-card-image"
             loading="eager"
+            fetchpriority={prioritizeLcp ? 'high' : 'auto'}
             widths={[320, 480, 640, 800]}
             sizes="(max-width: 640px) 100vw, 320px"
             quality={75}
