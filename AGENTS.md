@@ -351,6 +351,24 @@ bun run preview     # manually test /, /posts/…, /en/posts/…, /fr/ language 
 | Vite integration | `astro.config.mjs` | `@tailwindcss/vite` plugin |
 | Custom layout tokens | `src/styles/global.css` | CSS vars listed below |
 
+### Font loading architecture
+
+- Site fonts use **Astro Fonts API** (`astro.config.mjs` → `fonts: [...]`) with
+  `fontProviders.local()`.
+- Font files are sourced from installed npm packages:
+  `@fontsource/source-sans-3`, `@fontsource/lato`, and
+  `@fontsource/jetbrains-mono`.
+- `src/layouts/BaseLayout.astro` must import `{ Font }` from `astro:assets`
+  and include:
+  - `<Font cssVariable="--font-source-sans-3" />`
+  - `<Font cssVariable="--font-lato" />`
+  - `<Font cssVariable="--font-jetbrains-mono" preload />`
+- `src/styles/global.css` maps Tailwind tokens to these variables:
+  - `--font-sans: var(--font-source-sans-3, system-ui, sans-serif)`
+  - `--font-mono: var(--font-jetbrains-mono, ui-monospace, monospace)`
+- Do not add Google Fonts `<link>` tags or direct `@fontsource/...css` imports
+  in CSS when this architecture is in use.
+
 ### Custom CSS tokens
 
 | Token | Default | Purpose |
@@ -526,6 +544,7 @@ Edit the keydown handler at the bottom of `src/components/islands/SearchButton.a
 | **Math is opt-in** | Never load KaTeX globally — use `math: true` frontmatter per post. |
 | **Alert classes need safelisting** | `remark-alert` emits classes at build-time HTML generation. Keep `@source inline(...)` safelist entries in `src/styles/global.css` aligned with supported alert variants. |
 | **Five places for theme names** | Renaming `chirpy-light`/`chirpy-dark` requires updating all five locations atomically. |
+| **Fonts are config-driven** | Keep font definitions in `astro.config.mjs` + `<Font />` tags in `BaseLayout.astro`; avoid ad-hoc `<link>` tags or CSS `@import` font files. |
 | **hreflang only for existing translations** | Don't manually add hreflang tags — they are generated automatically from `translationKey` pairs. |
 | **`draft: true` posts** | Excluded from prod builds, RSS, and sitemap, but visible in `bun run dev`. |
 | **GitHub Pages needs `BASE_PATH`** | Set to `/<repo-name>` for project Pages; leave empty for root/custom domain. |
@@ -542,6 +561,7 @@ Edit the keydown handler at the bottom of `src/components/islands/SearchButton.a
 | Giscus theme stuck | Theme attribute must be `chirpy-light` or `chirpy-dark`. Update `Giscus.astro` if renamed. |
 | New locale routes 404 in dev | Restart `bun run dev` after adding files under `src/pages/<locale>/`. |
 | `astro check` fails on `astro:content` | Run `bun run dev` or `bun run build` once to generate `.astro/types.d.ts`. |
+| Custom fonts not loading after provider changes | Keep fonts on `fontProviders.local()` when network/TLS blocks third-party font metadata endpoints; verify `<Font cssVariable="..." />` tags still exist in `BaseLayout.astro`. |
 | Math rendered as raw `$…$` | Add `math: true` to frontmatter and rebuild. |
 | Stacked alert blocks touch each other | Keep `.prose-chirpy div[role='alert'] + div[role='alert']` spacing rule in `src/styles/global.css`. |
 | `pubDate: Required` build error | A post is missing `pubDate` in frontmatter — error message names the file. |
@@ -565,6 +585,9 @@ Edit the keydown handler at the bottom of `src/components/islands/SearchButton.a
 | `pagefind` | latest | Static search index |
 | `@astrojs/sitemap` | latest | Sitemap generation |
 | `@astrojs/mdx` | latest | MDX support |
+| `@fontsource/source-sans-3` | latest | Source Sans 3 files used by Astro Fonts API local provider |
+| `@fontsource/lato` | latest | Lato files used by Astro Fonts API local provider |
+| `@fontsource/jetbrains-mono` | latest | JetBrains Mono files used by Astro Fonts API local provider |
 | `@satori/resvg-js` | latest | Automatic OG image generation |
 
 ---
@@ -723,4 +746,4 @@ conventions:
 
 ---
 
-*This file was last updated on 2026-05-05.*
+*This file was last updated on 2026-05-06.*
