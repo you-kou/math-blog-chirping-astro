@@ -91,7 +91,8 @@ Markdown authoring also includes two custom remark code-block transforms:
     └── utils/
         ├── posts.ts           # Collection helpers: sort, filter, paginate
         ├── reading-time.ts
-        └── seo.ts
+        ├── seo.ts
+        └── slugify.ts         # Unicode-aware tag/category URL slugifier
 ```
 
 ---
@@ -438,6 +439,7 @@ it must remain an `is:inline` script.
 bun run dev            # Dev server at http://localhost:4321
 bun run build          # astro build → pagefind index (output: dist/)
 bun run preview        # Serve dist/ locally (search works here, not in dev)
+bun run test           # Run tests with Bun's built-in test runner
 bun run typecheck      # astro check (TypeScript + Astro types)
 bun run lint           # ESLint — zero warnings allowed
 bun run format         # Prettier write (auto-fixes formatting in place)
@@ -575,7 +577,8 @@ Edit the keydown handler at the bottom of `src/components/islands/SearchButton.a
 | **SVG optimizer is still experimental in Astro 6.2** | Keep it under `experimental.svgOptimizer`; do not move it to a top-level `svgOptimizer` key unless Astro docs explicitly promote it. |
 | **hreflang only for existing translations** | Don't manually add hreflang tags — they are generated automatically from `translationKey` pairs. |
 | **`draft: true` posts** | Excluded from prod builds, RSS, and sitemap, but visible in `bun run dev`. |
-| **`unlisted: true` posts** | Excluded from all listings, RSS, and sitemap, but their URL is still generated and accessible. `unlistedHideFromSeo` defaults to `true` when `unlisted: true`, emitting `noindex, nofollow`. Unlisted posts are not included in prev/next navigation. |
+| **`unlisted: true` posts** | Excluded from all listings, RSS, and sitemap, but their URL is still generated and acc
+| **Tags/categories must survive `slugify`** | `slugify` in `src/utils/slugify.ts` is Unicode-aware via ECMAScript property escapes (`\p{L}\p{N}\p{M}`). Non-Latin tags (e.g. テスト, മലയാളം) are preserved as-is. Do not downgrade to ASCII-only matching. |essible. `unlistedHideFromSeo` defaults to `true` when `unlisted: true`, emitting `noindex, nofollow`. Unlisted posts are not included in prev/next navigation. |
 | **GitHub Pages needs `BASE_PATH`** | Set to `/<repo-name>` for project Pages; leave empty for root/custom domain. |
 
 ---
@@ -596,7 +599,8 @@ Edit the keydown handler at the bottom of `src/components/islands/SearchButton.a
 | Stacked alert blocks touch each other | Keep `.prose-chirpy div[role='alert'] + div[role='alert']` spacing rule in `src/styles/global.css`. |
 | `pubDate: Required` build error | A post is missing `pubDate` in frontmatter — error message names the file. |
 | Sitemap missing hreflang | Ensure both translations share the same `translationKey` (or identical slug). |
-| After changing default locale, old default URLs now 404 | The old default locale needs its own `src/pages/<old-locale>/` folder with every route file. |
+| After changing default locale, old default URLs now 404 | The old default locale needs its own `src/pages/<old-locale>/` folder with every route
+| `TypeError: Missing parameter: tag` (or `category`) with non-Latin tags | `slugify` was stripping Unicode characters, resulting in an empty string for dynamic route params. Verify `src/utils/slugify.ts` uses `\p{L}\p{N}\p{M}` Unicode property escapes and the function is imported (not redefined) in `posts.ts`. |file. |
 | After changing default locale, canonical URLs wrong | Verify `localePrefix()` in `src/i18n/utils.ts` returns `''` for the new `defaultLocale`. |
 | Language switcher sends user to wrong URL | `localizedPath()` is likely still hard-coded to the old default locale — check `src/i18n/utils.ts`. |
 
@@ -776,4 +780,4 @@ conventions:
 
 ---
 
-*This file was last updated on 2026-05-18.*
+*This file was last updated on 2026-06-03.*
