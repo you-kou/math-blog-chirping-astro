@@ -1,5 +1,5 @@
 import process from 'node:process';
-import avatarImg from './assets/images/site/avatar.svg';
+import avatarImg from './assets/images/site/avatar.jpg';
 import ogDefaultImg from './assets/images/site/og-default.svg';
 import type { SiteConfig, NavItem, SocialLink, GiscusConfig } from './types/config';
 
@@ -15,7 +15,7 @@ export const SITE_IMAGES = {
   ogDefault: ogDefaultImg,
 } as const;
 
-export const locales = ['en', 'fr'] as const;
+export const locales = ['en', 'fr', 'zh'] as const;
 export type Locale = (typeof locales)[number];
 
 /**
@@ -50,16 +50,19 @@ export const SITE: SiteConfig = {
   // ==========================================
 
   /** Default site title used as homepage <title> and meta. */
-  title: 'Chirping Astro',
+  title: '拾数记',
   /** Site tagline / description. */
   description:
-    'A modern, multilingual Astro v6 theme inspired by Chirpy — built with Tailwind v4, daisyUI, MDX, Pagefind, and Giscus.',
+    '嗨，我是博客的主人！' +
+    '欢迎来到《拾数记》。这里是我私人的“数学拾荒角落”。' +
+    '在生活中，我们常被大数据的概率裹挟，但我更迷恋它最初在赌桌上诞生的那份纯粹；相比于大起大落的算术平均，我更倾向于用几何平均数式的平稳视角来观察这个世界。' +
+    '不用正襟危坐，数学本该是一场浪漫的思维冒险。随便逛逛吧！',
   /** Author/handle shown in footer + meta. */
   author: {
-    name: 'Chirping Astro',
+    name: '五五开',
     url: GITHUB_HANDLE ? `https://github.com/${GITHUB_HANDLE}` : undefined,
     avatar: avatarImg,
-    bio: 'A text-focused Astro V6 theme.',
+    bio: '人生は一方通行。どうか。ただ前だけを。',
   },
   /** Default OG image. */
   defaultOgImage: ogDefaultImg.src,
@@ -110,9 +113,9 @@ export const SITE: SiteConfig = {
   /** Supported locales. Changing this requires adding/removing locale folders, content, and i18n entries. */
   locales: locales,
   /** Default locale. Changing this is a breaking, atomic, multi-file operation. */
-  defaultLocale: 'en',
+  defaultLocale: 'zh',
   /** Show the language switcher and link to translated pages. */
-  multilingual: true,
+  multilingual: false,
 };
 
 export const NAV: readonly NavItem[] = [

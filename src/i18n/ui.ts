@@ -104,6 +104,103 @@ export const messages = {
     'footer.copyright': 'All rights reserved.',
   },
 
+  zh: {
+    'site.skipToContent': '跳过并跳转到主要内容',
+    'nav.home': '首页',
+    'nav.posts': '文章',
+    'nav.tags': '标签',
+    'nav.categories': '分类',
+    'nav.archives': '归档',
+    'nav.about': '关于',
+    'nav.search': '搜索',
+    'nav.toggleMenu': '切换菜单',
+
+    'theme.toggle': '切换主题',
+    'theme.light': '浅色',
+    'theme.dark': '深色',
+    'theme.system': '跟随系统',
+
+    'lang.switcher': '语言',
+    'lang.en': 'English',
+    'lang.fr': 'Français',
+
+    'post.publishedOn': '发布于',
+    'post.updatedOn': '更新于',
+    'post.readingTime': '分钟阅读',
+    'post.toc': '目录',
+    'post.tags': '标签',
+    'post.categories': '分类',
+    'post.previous': '上一篇',
+    'post.next': '下一篇',
+    'post.comments': '评论区',
+    'post.commentsDisabled': '本篇文章的评论区已关闭。',
+    'post.commentsSetupTitle': '评论系统需要配置',
+    'post.commentsSetupBody':
+      'Giscus 已启用但尚未配置。请在下方配置 GitHub 仓库信息以开启评论功能。',
+    'post.commentsSetupStep1':
+      '访问 `giscus.app` 并选择你的公开 GitHub 仓库（必须开启 Discussions 功能）。',
+    'post.commentsSetupStep2':
+      '复制生成的 `data-repo-id`、`data-category` 和 `data-category-id` 的值。',
+    'post.commentsSetupStep3':
+      '在你的 `.env` 文件中设置 `PUBLIC_GISCUS_ENABLED`、`PUBLIC_GISCUS_REPO`、`PUBLIC_GISCUS_REPO_ID`、`PUBLIC_GISCUS_CATEGORY` 和 `PUBLIC_GISCUS_CATEGORY_ID` 环境变量。',
+    'post.commentsSetupStep4':
+      '重新构建网站 —— 此提示将被真实的实时评论区替换。',
+    'post.commentsSetupDocs': '打开 giscus.app',
+    'post.share': '分享',
+    'post.copyLink': '复制链接',
+    'post.copied': '复制成功！',
+    'post.author': '作者',
+
+    'list.allPosts': '全部文章',
+    'list.empty': '未找到相关文章。',
+    'list.tagPosts': '带有标签的文章：',
+    'list.categoryPosts': '属于该分类的文章：',
+    'list.totalPosts': '篇文章',
+    'list.totalPostsOne': '篇文章',
+
+    'pagination.previous': '上一页',
+    'pagination.next': '下一页',
+    'pagination.page': '页码',
+    'pagination.of': '/',
+
+    'archives.title': '归档',
+    'archives.empty': '暂无文章归档。',
+
+    'tags.title': '标签',
+    'tags.empty': '暂无标签。',
+
+    'categories.title': '分类',
+    'categories.empty': '暂无分类。',
+
+    'search.title': '搜索',
+    'search.placeholder': '输入关键词搜索文章...',
+    'search.openLabel': '打开搜索',
+    'search.closeLabel': '关闭搜索',
+    'search.empty': '未找到相关结果。',
+    'search.loading': '正在加载搜索索引…',
+    'search.typeToStart': '输入内容开始搜索…',
+    'search.hintShortcut': '在任意位置按 / 键可快速打开搜索',
+    'search.searching': '正在搜索…',
+    'search.noResultsFor': '未找到关于以下内容的搜索结果：',
+    'search.resultsCount': '个结果',
+    'search.resultsCountOne': '个结果',
+    'search.hintNavigate': '进行选择',
+    'search.hintSelect': '打开跳转',
+    'search.clearLabel': '清空',
+
+    'code.copy': '复制代码',
+    'code.copied': '复制成功',
+
+    '404.title': '页面不存在',
+    '404.description': '你寻找的页面已经飞走了。',
+    '404.cta': '返回首页',
+
+    'footer.poweredBy': '强力驱动自',
+    'footer.theme': '主题',
+    'footer.privacy': '隐私政策',
+    'footer.copyright': '保留所有权利。',
+  },
+
   fr: {
     'site.skipToContent': 'Aller au contenu',
     'nav.home': 'Accueil',
