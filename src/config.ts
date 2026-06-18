@@ -86,14 +86,14 @@ export const SITE: SiteConfig = {
      * Optional full override for the left footer line. Supports {year} and {author}.
      * Default when undefined: "© {year} {author}. All rights reserved." (+ Privacy Policy link if enabled).
      */
-    leftText: undefined,
+    leftText: '© {year} {author} · 一方通行，只管向前。',
     /**
      * Optional custom text before the theme link on the right footer line.
      * Default when undefined: "Powered by Astro · Theme <themeName>".
      */
-    rightText: undefined,
+    rightText: '旅途由 Astro 驱动',
     /** Whether to show the Privacy Policy link in the footer. */
-    showPrivacyPolicy: true,
+    showPrivacyPolicy: false,
     /** Whether to show theme credits in the footer right side. Theme <themeName> */
     showThemeCredits: true,
     /** Label for the theme repository link in the right footer line. */
