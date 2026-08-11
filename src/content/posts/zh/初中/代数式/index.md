@@ -6,7 +6,6 @@ tags: []
 categories: [初中]
 heroImage: ./代数式各部分名称.png
 heroImageAlt: '代数基础示意图，以代数式8x+6为例，标注系数、变量、常数项、项的含义。'
-toc: true
 ---
 
 **代数式**（Algebraic Expressions）是从具体算术迈向抽象代数的重要桥梁。其核心目的，是学会**用字母表示数**，建立用符号解决数学与实际问题的代数思维。

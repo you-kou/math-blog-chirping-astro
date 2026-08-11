@@ -1,19 +1,18 @@
 ---
 title: '函数极限的概念'
 description: '深入浅出解析数学分析中的函数极限概念：从自变量趋于有限值、趋于无穷大到极限不存在（发散）的三种核心场景与严格定义。'
-pubDate: 1861-01-01 00:00:01
-tags: [极限, 专转本]
-categories: [分析学]
-heroImage: ./assets/函数极限的概念 - hero.png
+pubDate: 1996-01-01 02:01:01
+tags: [极限]
+categories: [专转本]
+heroImage: ./函数极限收敛发散分类.png
 heroImageAlt: '函数极限收敛与发散分类讲解图'
-toc: true
 ---
 
 import { Image } from 'astro:assets';
-import XFiniteImg from './assets/函数极限的概念 - 自变量趋于有限值的极限.png';
-import XInftyImg from './assets/函数极限的概念 - 自变量趋于无穷大的极限.png';
-import PieImg from './assets/函数极限的概念 - 分段函数左右极限.png';
-import SinImg from './assets/函数极限的概念 - 衰减震荡函数的极限.png';
+import XFiniteImg from './自变量趋于有限值的极限.png';
+import XInftyImg from './自变量趋于无穷大的极限.png';
+import PieImg from './分段函数左右极限.png';
+import SinImg from './衰减震荡函数的极限.png';
 
 在数学分析中，讨论函数极限的概念，本质上是在回答同一个核心问题：**当自变量 $x$ 按照某种特定规则逼近某个目标时，函数值 $f(x)$ 是否会稳定在一个确定的数值 $L$ 上？**
 
@@ -78,7 +77,7 @@ $x \to \infty$ 包含两个方向：
 - **$x \to -\infty$**：自变量向数轴极左端延伸，只需满足 $x < -X$
 
 **$\lim_{x \to \infty} f(x) = L$ 存在的充要条件**：$x \to +\infty$ 和 $x \to -\infty$ 时的极限均存在且**完全相等**。
-_例如：对于 $f(x) = e^x$，虽然 $\lim_{x \to -\infty} e^x = 0$，但由于当 $x \to +\infty$ 时函数发散，因此全局极限 $\lim_{x \to \infty} e^x$ 不存在。_
+_例如：对于 $f(x) = e^x$，虽然 $\lim_{x \to -\infty} e^x = 0$，但由于当 $x \to +\infty$ 时函数发散，因此全局极限 $\lim_{x \to \infty} e^x$ 不存在。\_
 
 ## 极限不存在（发散，DNE）
 

@@ -1,12 +1,11 @@
 ---
 title: '复合函数'
 description: '复合函数（Composite Function）是高中与高等数学中的核心概念之一。简单来说，复合函数就是“把一个函数的输出，作为另一个函数的输入”。'
-pubDate: 1914-03-15 00:00:08
-tags: [函数, 专转本]
-categories: [分析学]
-heroImage: ./assets/复合函数 - hero.webp
+pubDate: 1996-01-01 01:08:01
+tags: [函数]
+categories: [专转本]
+heroImage: ./函数复合 f‑og 映射关系.webp
 heroImageAlt: '复合函数 f∘g = f (g (x)) 映射示意图'
-toc: true
 ---
 
 假设有两个函数 $f(u)$ 和 $g(x)$：

@@ -1,12 +1,11 @@
 ---
 title: '隐函数'
 description: '在高等数学中，隐函数（Implicit Function） 是相对于显函数（Explicit Function）而言的一种函数表示形式。简单来说，显函数是“把因变量直接解出来”的形式，而隐函数则是“自变量与因变量交织在一起”的关系。'
-pubDate: 1914-03-15 00:00:09
-tags: [函数, 专转本]
-categories: [分析学]
-heroImage: ./assets/隐函数 - hero.png
+pubDate: 1996-01-01 01:09:01
+tags: [函数]
+categories: [专转本]
+heroImage: ./显函数与隐函数定义.png
 heroImageAlt: '隐函数与显函数定义对比图，隐函数形式 f (x,y)=0，显函数形式 y=f (x)'
-toc: true
 ---
 
 ## 显函数 vs 隐函数
@@ -28,4 +27,4 @@ toc: true
 
    像圆（$x^2 + y^2 = R^2$）、椭圆（$\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1$）、双曲线等，用隐函数方程表示非常简洁对称。如果强行写成显函数，往往需要拆分为带正负号的上下半支（如 $y = \pm\sqrt{R^2 - x^2}$）。
 
-   ![](<./assets/隐函数 - 圆.png>)
+   ![](./圆.png)

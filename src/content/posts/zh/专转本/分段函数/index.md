@@ -1,12 +1,11 @@
 ---
 title: '分段函数'
 description: '分段函数（Piecewise Function） 是指在自变量的不同取值范围内，用不同解析式（关系式）表达的函数。它并不是由几个独立的函数组成，而是一个整体函数，只是在定义域的不同区域应用了不同的计算规则。'
-pubDate: 1914-03-15 00:00:11
-tags: [函数, 专转本]
-categories: [分析学]
-heroImage: ./assets/分段函数 - hero.png
+pubDate: 1996-01-01 01:11:01
+tags: [函数]
+categories: [专转本]
+heroImage: ./分段函数介绍封面页.png
 heroImageAlt: '分段函数入门主题封面图'
-toc: true
 ---
 
 ## 表达形式
@@ -47,7 +46,7 @@ $$f(x) = \begin{cases} g(x), & x \in D_1 \\ h(x), & x \in D_2 \\ k(x), & x \in D
 
 $$f(x) = \vert{}x\vert{} = \begin{cases} x, & x \ge 0 \\ -x, & x < 0 \end{cases}$$
 
-![](<./assets/分段函数 - 绝对值函数.png>)
+![](./绝对值函数.png)
 
 ### 符号函数（Signum Function）
 
@@ -55,4 +54,4 @@ $$f(x) = \vert{}x\vert{} = \begin{cases} x, & x \ge 0 \\ -x, & x < 0 \end{cases}
 
 $$\text{sgn}(x) = \begin{cases} 1, & x > 0 \\ 0, & x = 0 \\ -1, & x < 0 \end{cases}$$
 
-![](<./assets/分段函数 - 符号函数.png>)
+![](./符号函数.png)

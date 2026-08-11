@@ -1,12 +1,11 @@
 ---
 title: '常函数'
 description: '常函数是数学中最基础的函数之一，其特点是无论输入任何值，输出结果都始终保持为一个固定的常数。'
-pubDate: 1914-03-15 00:00:01
-tags: [函数, 专转本]
-categories: [分析学]
-heroImage: ./assets/常函数 - hero.png
+pubDate: 1996-01-01 01:01:01
+tags: [函数]
+categories: [专转本]
+heroImage: ./常数函数图像.png
 heroImageAlt: '常数函数f(x)等于3的坐标轴图像，显示为一条穿过y轴数字3且平行于x轴的水平蓝色直线。'
-toc: true
 ---
 
 在数学中，**常函数**（Constant Function）是最简单、最基础的函数类型。直观地理解，无论你向这个函数输入什么值，它所返回的输出结果永远是**同一个固定的常数**。
