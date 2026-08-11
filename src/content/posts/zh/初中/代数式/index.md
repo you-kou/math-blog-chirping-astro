@@ -1,10 +1,10 @@
 ---
 title: '代数式'
 description: '从算术思维迈向代数思维的关键一步！掌握用符号表示数的规则，熟练进行单项式、多项式及整式的加减化简。'
-pubDate: 2024-07-01 00:01:02
+pubDate: 2024-07-01 01:02:01
 tags: []
 categories: [初中]
-heroImage: ./assets/代数式 - hero.png
+heroImage: ./代数式各部分名称.png
 heroImageAlt: '代数基础示意图，以代数式8x+6为例，标注系数、变量、常数项、项的含义。'
 toc: true
 ---
