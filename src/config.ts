@@ -59,7 +59,7 @@ export const SITE: SiteConfig = {
     '不用正襟危坐，数学本该是一场浪漫的思维冒险。随便逛逛吧！',
   /** Author/handle shown in footer + meta. */
   author: {
-    name: '五五开',
+    name: '三七开',
     url: GITHUB_HANDLE ? `https://github.com/${GITHUB_HANDLE}` : undefined,
     avatar: avatarImg,
     bio: '人生は一方通行。どうか。ただ前だけを。',
